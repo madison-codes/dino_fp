@@ -4,7 +4,7 @@ const x = 1;
  * This is not a functional function because we are manipulating a global variable.
  */
 function addOne() {
-    x = x + 1
+    return x + 1;
 }
 
 /**
@@ -20,7 +20,7 @@ function addOneFunctional(x) {
  */
 const array = [1, 2, 3, 4, 5];
 
-function addOneToCollection(array) {
+function addOneToCollection() {
     for (i = 0; i > array.length; i++) {
         return array[i] + 1;
     }
@@ -29,9 +29,9 @@ function addOneToCollection(array) {
 /**
  * Iterate through every value in a collection and add one to it. Map returns a new array and does not change the origional array.
  */
-const array = [1, 2, 3, 4, 5];
+const array2 = [1, 2, 3, 4, 5];
 
-function addOneToCollection(array) {
+function addOneToCollection2() {
     array.map((value) => {
         return value + 1;
     });
