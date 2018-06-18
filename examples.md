@@ -64,8 +64,9 @@ Now, the above is one of the DUMBEST ways possible to count to 10. Or 50. Or 500
 
 ```
 class Tamagotchi {
-  constructor(properties) {
-    this.properties = properties;
+  constructor({ name, age }) {
+    this.name = name;
+    this.age = age;
   }
 }
 
@@ -84,15 +85,50 @@ function ageTamagotchi(tamagotchi) {
 
 function tamagotchiYear(tamagotchi) {
   setTimeout(function(){ 
-    addAWrinkle(tamagotchi)
+    ageOneYear(tamagotchi)
     console.log(tamagotchi);
   }, 5000);
 };
 
-function addAWrinkle(tamagotchi) {
-  tamagotchi.properties.age++
+function ageOneYear(tamagotchi) {
+  tamagotchi.age++
 };
 ```
+
+But what if we want to make this loop recursive? Well, it would look something like this.
+
+```
+class Tamagotchi {
+  constructor({ name, age }) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+var tommy = new Tamagotchi({
+  name: 'Tommy',
+  age: 1
+})
+
+ageTamagotchi(100, tommy);
+
+function ageTamagotchi(value, tamagotchi) {
+  setTimeout(function () { 
+    currentAge = tamagotchi.properties.age;
+    if (currentAge < value) {
+      addOneYear(tamagotchi);
+      return ageTamagotchi(value++, tamagotchi);
+    } else {
+      return currentAge;
+    }
+  }, 500);
+};
+
+function ageOneYear(tamagotchi) {
+  tamagotchi.age++
+};
+```
+
 
 
 ```
