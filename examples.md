@@ -60,7 +60,38 @@ count(500); // 500
 
 ```
 
-Now, the above is one of the DUMBEST ways possible to count to 10. Or 50. Or 500. But say you're making a new Tamagotchi and need to increment it's age. Below is one way you might set up the logic. 
+Now, the above is one of the DUMBEST ways possible to count to 10. Or 50. Or 500. But let's go with it. How would you make this example recursive?
+
+```
+function recursionCount(max, num=0){
+  if (num < max){
+    console.log(num);
+    return recursionCount(max, ++num); 
+  }
+  return num;
+}
+
+recursionCount(10);  // 10
+recursionCount(50);  // 50
+recursionCount(500); // 500
+```
+
+Now it's your turn! Make a recursive countdown loop in JavaScript. 
+
+<details><summary>Click to view answer.</summary><p>
+    
+```
+function countdown(num) {
+  console.log(num);
+  if (num >= 1) { 
+    countdown(num-1); 
+  }
+} 
+```
+
+</p></details>
+
+Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment it's age. Below is one way you might set up the logic. 
 
 ```
 class Tamagotchi {
@@ -113,64 +144,20 @@ var tommy = new Tamagotchi({
 ageTamagotchi(100, tommy);
 
 function ageTamagotchi(value, tamagotchi) {
-  setTimeout(function () { 
-    currentAge = tamagotchi.properties.age;
+  setTimeout(function() { 
+    currentAge = tamagotchi.age;
     if (currentAge < value) {
-      addOneYear(tamagotchi);
+      ageOneYear(tamagotchi);
       return ageTamagotchi(value++, tamagotchi);
-    } else {
-      return currentAge;
     }
-  }, 500);
+    return currentAge;
+  }, 5000);
 };
 
 function ageOneYear(tamagotchi) {
-  tamagotchi.age++
+  tamagotchi.age++;
+  console.log(tamagotchi);
 };
-```
-
-
-
-```
-var age = () => {
-  age = 0
-  for (var i = 1; i <= 1000; ++i)
-      result += 1;
-  console.log(result);
-}
-
-count(10);  // 10
-count(50);  // 50
-count(500); // 500
-
-```
-
-```
-var thing = 0;
-for (var i = 1; i <= 100; ++i)
-    thing = 2;
-console.log(thing)
-
-
-```
-var count = 0;
-for (var i = 1; i <= 10; ++i)
-    count += i;
-console.log(count); // prints 55
-```
-// without loop construct or variables (recursion)
-function sumRange(start, end, acc) {
-    if (start > end)
-        return acc;
-    return sumRange(start + 1, end, acc + start)
-}
-console.log(sumRange(1, 10, 0)); // prints 55
-
-```
-function add(x, y) {
-    return x + y;
-}
-console.log(add(2, 2)); // prints 4
 ```
 
 ### Multiply
