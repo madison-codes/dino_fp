@@ -62,15 +62,37 @@ count(500); // 500
 
 Now, the above is one of the DUMBEST ways possible to count to 10. Or 50. Or 500. But say you're making a new Tamagotchi and need to increment it's age. Below is one way you might set up the logic. 
 
-// sleep time expects milliseconds
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
+```
+class Tamagotchi {
+  constructor(properties) {
+    this.properties = properties;
+  }
 }
 
-// Usage!
-sleep(500).then(() => {
-    // Do something after the sleep!
-});
+var tommy = new Tamagotchi({
+  name: 'Tommy',
+  age: 1
+})
+
+ageTamagotchi(tommy);
+
+function ageTamagotchi(tamagotchi) {
+  setInterval(function(){
+    tamagotchiYear(tamagotchi)
+  }, 5000);
+};
+
+function tamagotchiYear(tamagotchi) {
+  setTimeout(function(){ 
+    addAWrinkle(tamagotchi)
+    console.log(tamagotchi);
+  }, 5000);
+};
+
+function addAWrinkle(tamagotchi) {
+  tamagotchi.properties.age++
+};
+```
 
 
 ```
