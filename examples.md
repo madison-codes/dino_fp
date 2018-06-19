@@ -84,6 +84,8 @@ function multByTwo(array) {
 console.log(multByTwo([1, 2, 3])); // prints [2, 4, 6]
 ```
 
+</p></details>
+
 ### Functors
 
 Functors are objects that have a `.map` method.
