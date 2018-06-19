@@ -34,7 +34,11 @@ console.log(add(3, 3)); // prints 9
 
 ### Maps
 
-Here is our `for` loop that adds on to every value in our array.
+Let's continue to keep it simple and build slowly! Let's take our `add` function and use it on a collection of numbers.
+
+What do you normally use to contain may elements in JavaScript? An array. Let's go ahead and use an array here.
+
+Here is our `for` loop that adds one to every value in our array.
 
 ```javascript
 function addOneToCollection(array) {
@@ -45,7 +49,7 @@ function addOneToCollection(array) {
 console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 ```
 
-Now let's go ahead and turn our `for` loop into a map function!
+Now let's refactor and rewrite! Go ahead and turn the `addOneToCollection` `for` loop into a function that uses map.
 
 ```javascript
 function addOneToCollection(array) {
@@ -58,7 +62,17 @@ console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 
 When given a value, the function will unwrap the values that are contained in the array into individual parts, feed those parts into the function that it was given and take the return value and rewrap them in a structured form.
 
-Your Turn! Now you take a crack at it! Rewrite the `multByTwo` function to use map instead of a `for` loop.
+You just wrote a functor!
+
+Congratulations!
+
+### Functors
+
+All a functor is, is an object that has a `.map` method... an array for instance.
+
+Now it's your turn to write a functor! Rewrite the `multByTwo` function as a functor.
+
+Remember all you have to do is convert the `for` loop to use `map`.
 
 ```javascript
 function multByTwo(array) {
@@ -81,10 +95,6 @@ console.log(multByTwo([1, 2, 3])); // prints [2, 4, 6]
 ```
 
 </p></details>
-
-### Functors
-
-Functors are objects that have a `.map` method.
 
 ## Recursion
 
