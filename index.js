@@ -40,3 +40,10 @@ function addOneToCollection(array) {
 // [EMILY] Loop through a collection of numbers
 
 // [EMILY] Recursive loop through a collection of numbers
+
+// Purity
+// Loops
+// Loop over different types
+// Functors
+// Recursion
+// Other examples of Functors (filter/ reduce/ not forEach)
