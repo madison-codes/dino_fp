@@ -153,31 +153,28 @@ class Tamagotchi {
     this.name = name;
     this.age = age;
   }
+
+  growOlder = maxAge => {
+    var tamagotchi = this;
+    for (i = tamagotchi.age; i < maxAge; i++) {
+      setTimeout(function() {
+        tamagotchi.passAroundTheSun();
+      }, 5000);
+    }
+  };
+
+  passAroundTheSun = () => {
+    this.age++;
+    console.log(this);
+  };
 }
 
 var tommy = new Tamagotchi({
   name: "Tommy",
-  age: 1
+  age: 11
 });
 
-ageTamagotchi(tommy);
-
-function ageTamagotchi(tamagotchi) {
-  setInterval(function() {
-    tamagotchiYear(tamagotchi);
-  }, 5000);
-}
-
-function tamagotchiYear(tamagotchi) {
-  setTimeout(function() {
-    ageOneYear(tamagotchi);
-    console.log(tamagotchi);
-  }, 5000);
-}
-
-function ageOneYear(tamagotchi) {
-  tamagotchi.age++;
-}
+tommy.growOlder(100);
 ```
 
 But what if we want to make this loop recursive? Well, it would look something like this.
@@ -189,21 +186,19 @@ class Tamagotchi {
     this.age = age;
   }
 
-  growOlder(maxAge) {
-    let tamagotchi = this;
+  growOlder = maxAge => {
+    var tamagotchi = this;
     setTimeout(function() {
-      if (tamagotchi.age < maxAge) {
-        tamagotchi.ageOneYear();
-        return tamagotchi.growOlder(maxAge);
-      }
-      return this;
-    }, 5000);
-  }
+      // # -------------- #
+      // | YOUR CODE HERE |
+      // # -------------- #
+    }, 100);
+  };
 
-  ageOneYear() {
+  ageOneYear = () => {
     this.age++;
     console.log(this);
-  }
+  };
 }
 
 var tommy = new Tamagotchi({
@@ -214,26 +209,25 @@ var tommy = new Tamagotchi({
 tommy.growOlder(100);
 ```
 
-### Multiply
-
-It's your turn! Build a pure function that multiplies two parameters.
-
 <details><summary>Click to view answer.</summary><p>
 
-```javascript
-function multiple(x, y) {
-  return x * y;
-}
-console.log(add(3, 3)); // prints 9
+```
+  growOlder = (maxAge) => {
+    var tamagotchi = this;
+    setTimeout(function() {
+      if (tamagotchi.age < maxAge) {
+        tamagotchi.ageOneYear();
+        return tamagotchi.growOlder(maxAge);
+      }
+      return tamagotchi;
+    }, 100);
+  };
 ```
 
 </p></details>
 
-# thing
+# LEFT TO DO
 
-MADISON SIMPLE
-addOne (one parameter) as we would normally do — not pure
-Add one pure function
 MADISON LOOPS
 MAPS: ARRAY
 MADISON — ARRAY: Loop as we would normally do (for loop)
