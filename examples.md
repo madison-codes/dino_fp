@@ -32,7 +32,7 @@ console.log(add(3, 3)); // prints 9
 
 ## LOOPS
 
-### Maps
+### Convert `For` To `Map`
 
 Let's continue to keep it simple and build slowly! Let's take our `add` function and use it on a collection of numbers.
 
@@ -96,9 +96,9 @@ console.log(multByTwo([1, 2, 3])); // prints [2, 4, 6]
 
 </p></details>
 
-## Recursion
+### Recursion
 
-### Simple For Loop
+#### Simple For Loop
 
 A simple for loop in JavaScript.
 
