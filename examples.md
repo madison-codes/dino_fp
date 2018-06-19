@@ -1,12 +1,12 @@
 # Functional Programming in JavaScript
 
-We're going to start slow and simple, master building a pure function and then take things from there. 
+We're going to start slow and simple, master building a pure function and then take things from there.
 
 ## (SIMPLE) PURE FUNCTIONS
 
 ### Add
 
-Create a pure function that finds the sum of two parameters. 
+Create a pure function that finds the sum of two parameters.
 
 ```
 function add(x, y) {
@@ -23,22 +23,70 @@ It's your turn! Build a pure function that multiplies two parameters.
 
 ```
 function multiple(x, y) {
-  return x * y; 
-} 
+  return x * y;
+}
 console.log(add(3, 3)); // prints 9
 ```
+
 </p></details>
 
 ## LOOPS
 
 ### Maps
 
-{{ MADISON }}
+#### For Loops Converted into a Map
 
-### Rewrite A For Loop as a Map
+Here is our `for` loop that adds on to every value in our array.
+
+```
+function addOneToCollection(array) {
+  for(let i = 0; i < array.length; i ++){
+      return array[i] + 1;
+  }
+}
+console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
+```
+
+Now let's go ahead and turn our `for` loop into a map function!
+
+```
+function addOneToCollection(array) {
+  return array.map((value) => {
+      return value + 1;
+  }
+}
+console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
+```
+
+When given a value, the function will unwrap the values into individual parts, feed those parts into the function that it was given and take the return value and rewrap them in a structured form.
+
+##### Your Turn!
+
+Now you take a crack at it! Rewrite the multByTwo function to use map instead of a `for` loop.
+
+```
+function multByTwo(array) {
+  for(let i = 0; i < array.length; i ++){
+      return array[i] *  2;
+  }
+}
+console.log(multByTwo([1, 2, 3])); // prints [2, 4, 6]
+```
+
+<details><summary>Click to view answer.</summary><p>
+
+```
+function multByTwo(array) {
+  return array.map((value) => {
+      return value * 2;
+  }
+}
+console.log(multByTwo([1, 2, 3])); // prints [2, 4, 6]
+```
 
 ### Functors
-A functor is a map that's loopable — something you can call `.map` on. 
+
+Functors are objects that have a `.map` method.
 
 ### Recursion
 
@@ -57,7 +105,6 @@ var count = (num) => {
 count(10);  // 10
 count(50);  // 50
 count(500); // 500
-
 ```
 
 Now, the above is one of the DUMBEST ways possible to count to 10. Or 50. Or 500. But let's go with it. How would you make this example recursive?
@@ -66,7 +113,7 @@ Now, the above is one of the DUMBEST ways possible to count to 10. Or 50. Or 500
 function recursionCount(max, num=0){
   if (num < max){
     console.log(num);
-    return recursionCount(max, ++num); 
+    return recursionCount(max, ++num);
   }
   return num;
 }
@@ -76,22 +123,22 @@ recursionCount(50);  // 50
 recursionCount(500); // 500
 ```
 
-Now it's your turn! Make a recursive countdown loop in JavaScript. 
+Now it's your turn! Make a recursive countdown loop in JavaScript.
 
 <details><summary>Click to view answer.</summary><p>
-    
+
 ```
 function countdown(num) {
   console.log(num);
-  if (num >= 1) { 
-    countdown(num-1); 
+  if (num >= 1) {
+    countdown(num-1);
   }
-} 
+}
 ```
 
 </p></details>
 
-Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment it's age. Below is one way you might set up the logic. 
+Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment it's age. Below is one way you might set up the logic.
 
 ```
 class Tamagotchi {
@@ -115,7 +162,7 @@ function ageTamagotchi(tamagotchi) {
 };
 
 function tamagotchiYear(tamagotchi) {
-  setTimeout(function(){ 
+  setTimeout(function(){
     ageOneYear(tamagotchi)
     console.log(tamagotchi);
   }, 5000);
@@ -168,14 +215,15 @@ It's your turn! Build a pure function that multiplies two parameters.
 
 ```
 function multiple(x, y) {
-  return x * y; 
-} 
+  return x * y;
+}
 console.log(add(3, 3)); // prints 9
 ```
+
 </p></details>
 
-
 # thing
+
 MADISON SIMPLE
 addOne (one parameter) as we would normally do — not pure
 Add one pure function
@@ -185,12 +233,6 @@ MADISON — ARRAY: Loop as we would normally do (for loop)
 MADISON — Rewrite for loop as a map
 FUNCTOR — A map that’s loopable. Something you can call map on.
 EMILY RECURISON: NUMBERS
- EMILY — NUMBERS: Loop
- EMILY — Recursive loop that accomplishes the same thing
+EMILY — NUMBERS: Loop
+EMILY — Recursive loop that accomplishes the same thing
 HIGHER ORDER FUNCTION
-EXTRA
-MONAD
-REFACTOR A PROGRAM
-Pipes? Chaining? 
-
-
