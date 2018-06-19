@@ -42,7 +42,7 @@ A functor is a map that's loopable — something you can call `.map` on.
 
 ### Recursion
 
-### Simple For Loop
+#### Simple For Loop
 
 A simple for loop in JavaScript.
 
@@ -99,31 +99,29 @@ class Tamagotchi {
     this.name = name;
     this.age = age;
   }
-}
+
+  growOlder = (maxAge) => {
+    var tamagotchi = this;
+    for (i = tamagotchi.age; i < maxAge; i++) {
+      setTimeout(function(){
+        tamagotchi.passAroundTheSun()
+      }, 5000);
+    }
+  };
+
+  passAroundTheSun = () => {
+    this.age++;
+    console.log(this);
+  };
+};
 
 var tommy = new Tamagotchi({
   name: 'Tommy',
-  age: 1
+  age: 11
 })
 
-ageTamagotchi(tommy);
+tommy.growOlder(100);
 
-function ageTamagotchi(tamagotchi) {
-  setInterval(function(){
-    tamagotchiYear(tamagotchi)
-  }, 5000);
-};
-
-function tamagotchiYear(tamagotchi) {
-  setTimeout(function(){ 
-    ageOneYear(tamagotchi)
-    console.log(tamagotchi);
-  }, 5000);
-};
-
-function ageOneYear(tamagotchi) {
-  tamagotchi.age++
-};
 ```
 
 But what if we want to make this loop recursive? Well, it would look something like this.
@@ -135,18 +133,18 @@ class Tamagotchi {
     this.age = age;
   }
 
-  growOlder(maxAge) {
-    let tamagotchi = this;
+  growOlder = (maxAge) => {
+    var tamagotchi = this;
     setTimeout(function() {
-      if (tamagotchi.age < maxAge) {
-        tamagotchi.ageOneYear();
-        return tamagotchi.growOlder(maxAge);
-      }
-      return this;
-    }, 5000);
+    
+      // # -------------- # 
+      // | YOUR CODE HERE |
+      // # -------------- #
+      
+    }, 100);
   };
 
-  ageOneYear() {
+  ageOneYear = () => {
     this.age++;
     console.log(this);
   };
@@ -160,37 +158,30 @@ var tommy = new Tamagotchi({
 tommy.growOlder(100);
 ```
 
-### Multiply
-
-It's your turn! Build a pure function that multiplies two parameters.
-
 <details><summary>Click to view answer.</summary><p>
 
 ```
-function multiple(x, y) {
-  return x * y; 
-} 
-console.log(add(3, 3)); // prints 9
+  growOlder = (maxAge) => {
+    var tamagotchi = this;
+    setTimeout(function() {
+      if (tamagotchi.age < maxAge) {
+        tamagotchi.ageOneYear();
+        return tamagotchi.growOlder(maxAge);
+      }
+      return tamagotchi;
+    }, 100);
+  };
 ```
 </p></details>
 
 
-# thing
-MADISON SIMPLE
-addOne (one parameter) as we would normally do — not pure
-Add one pure function
+# LEFT TO DO
 MADISON LOOPS
 MAPS: ARRAY
 MADISON — ARRAY: Loop as we would normally do (for loop)
 MADISON — Rewrite for loop as a map
 FUNCTOR — A map that’s loopable. Something you can call map on.
-EMILY RECURISON: NUMBERS
- EMILY — NUMBERS: Loop
- EMILY — Recursive loop that accomplishes the same thing
 HIGHER ORDER FUNCTION
-EXTRA
-MONAD
-REFACTOR A PROGRAM
-Pipes? Chaining? 
+
 
 
