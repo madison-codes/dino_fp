@@ -134,6 +134,22 @@ class Tamagotchi {
     this.name = name;
     this.age = age;
   }
+
+  growOlder(maxAge) {
+    let tamagotchi = this;
+    setTimeout(function() {
+      if (tamagotchi.age < maxAge) {
+        tamagotchi.ageOneYear();
+        return tamagotchi.growOlder(maxAge);
+      }
+      return this;
+    }, 5000);
+  };
+
+  ageOneYear() {
+    this.age++;
+    console.log(this);
+  };
 }
 
 var tommy = new Tamagotchi({
@@ -141,23 +157,7 @@ var tommy = new Tamagotchi({
   age: 1
 })
 
-ageTamagotchi(100, tommy);
-
-function ageTamagotchi(value, tamagotchi) {
-  setTimeout(function() { 
-    currentAge = tamagotchi.age;
-    if (currentAge < value) {
-      ageOneYear(tamagotchi);
-      return ageTamagotchi(value++, tamagotchi);
-    }
-    return currentAge;
-  }, 5000);
-};
-
-function ageOneYear(tamagotchi) {
-  tamagotchi.age++;
-  console.log(tamagotchi);
-};
+tommy.growOlder(100);
 ```
 
 ### Multiply
