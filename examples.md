@@ -211,29 +211,113 @@ tommy.growOlder(100);
 
 <details><summary>Click to view answer.</summary><p>
 
-```
-  growOlder = (maxAge) => {
-    var tamagotchi = this;
-    setTimeout(function() {
-      if (tamagotchi.age < maxAge) {
-        tamagotchi.ageOneYear();
-        return tamagotchi.growOlder(maxAge);
-      }
-      return tamagotchi;
-    }, 100);
-  };
+```javascript
+growOlder = maxAge => {
+  var tamagotchi = this;
+  setTimeout(function() {
+    if (tamagotchi.age < maxAge) {
+      tamagotchi.ageOneYear();
+      return tamagotchi.growOlder(maxAge);
+    }
+    return tamagotchi;
+  }, 100);
+};
 ```
 
 </p></details>
 
-# LEFT TO DO
+### HIGHER ORDER FUNCTIONS
 
-MADISON LOOPS
-MAPS: ARRAY
-MADISON — ARRAY: Loop as we would normally do (for loop)
-MADISON — Rewrite for loop as a map
-FUNCTOR — A map that’s loopable. Something you can call map on.
-EMILY RECURISON: NUMBERS
-EMILY — NUMBERS: Loop
-EMILY — Recursive loop that accomplishes the same thing
-HIGHER ORDER FUNCTION
+Let's start off with a function. This function again is super simple! We are going to just add one to a value that we pass in.
+
+```javascript
+function addOne(value) {
+  return value++;
+}
+
+console.log(addOne(2)); // 3
+```
+
+But what if we pass in an array instead of a single value? To handle this our function has to expand.
+
+```javascript
+function addOne(value) {
+  if (typeof value === "number") {
+    return value++;
+  }
+  if (typeof value === "array") {
+    return value.map(number => {
+      return value++;
+    });
+  }
+}
+
+console.log(addOne(2)); // 3
+console.log(addOne([1, 2, 3])); // [2, 3, 4]
+```
+
+This is fine, but what if I want to add another method. All of the sudden my function becomes bloated and unmanageable.
+
+So, let's refactor.
+
+```javascript
+function addOne(value: number): number {
+  value++;
+}
+
+function addOneToArray(value: number[]): number[] {
+  return value.map(number => {
+    return addOne(value);
+  });
+}
+
+function higherOrderFn(value: A, fn: F[A]): A {
+  return fn(value);
+}
+
+console.log(higherOrderFn(2, addOneToValue)); // 3
+console.log(higherOrderFn([2, 3, 4], addOneToArray)); // [3, 4, 5]
+```
+
+If you use Typescript this will look farmiliar to you, if not, types are displayed here to display the point that we can better reason about these small, composible functions.
+
+Your turn. Take a shot at refactoring this large bloated function into smaller, composible, and higher order functions.
+
+```javascript
+function multByTwo(value) {
+  if (typeof value === "number") {
+    return value * 2;
+  }
+  if (typeof value === "array") {
+    return value.map(number => {
+      return value * 2;
+    });
+  }
+}
+
+console.log(multByTwo(2)); // 3
+console.log(multByTwo([1, 2, 3])); // [2, 3, 4]
+```
+
+<details><summary>Click to view answer.</summary><p>
+
+```javascript
+function multByTwo(value) {
+  value++;
+}
+
+function multByTwoArray(value) {
+  return value.map(number => {
+    return addOne(value);
+  });
+}
+
+function higherOrderFn(value, fn) {
+  return fn(value);
+}
+
+console.log(higherOrderFn(2, multByTwo)); // 6
+console.log(higherOrderFn([2, 3, 4], multByTwoArray)); // [4, 6, 8]
+```
+
+</p></details>
