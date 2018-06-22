@@ -11,8 +11,8 @@ xdescribe('FUNCTOR', () => {
     });
 });
 
-xdescribe('RECURSION', () => {
-    it('should add one to every value in the collection', () => {
+describe('RECURSION', () => {
+    it('should count down from the provided value - and return the passed in value', () => {
         expect(countdown(10)).toEqual(10);
     });
 });

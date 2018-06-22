@@ -177,6 +177,9 @@ function countdown(num) {
   if (num >= 1) {
     countdown(num - 1);
   }
+    return num;
+}
+
 }
 ```
 
