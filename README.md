@@ -4,9 +4,9 @@
 
 ### Setup
 
-Install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) with the command `brew install yarn` if you don't already have it installed.
+1.  Install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) with the command `brew install yarn` if you don't already have it installed.
 
-Install dependencies with the command `yarn`.
+2.  Install dependencies with the command `yarn`.
 
 ---
 
