@@ -1,12 +1,29 @@
 # Functional Programming in JavaScript
 
-We're going to start slow and simple, master building a pure function and then take things from there.
+We're going to start slow and simple, master building a pure function and then build up your knowledge from there.
 
 ## (SIMPLE) PURE FUNCTIONS
 
+This is not a pure function:
+
+```javascript
+let a = 1;
+
+function notPure() {
+  a++;
+  return a;
+}
+```
+
+Do you know why?
+
+This function modifies the global variable `a` and returns it. Since `a` is a global variable in the program another piece of our program might rely on it. If that is the case, modifying `a` to something unexpected could cause negative consequences. Changing a global variable is an example of a side effect.
+
+Now let's write a pure function to compare.
+
 ### Add
 
-Create a pure function that finds the sum of two parameters.
+`add` is an example of a pure function. It takes two inputs and returns an entirely new value without introducing side effects into our app.
 
 ```javascript
 function add(x, y) {
@@ -17,15 +34,21 @@ console.log(add(2, 2)); // prints 4
 
 ### Multiply
 
-It's your turn! Build a pure function that multiplies two parameters.
+It's your turn! Take a shot at writing a pure implementation of the function `multiply`.
 
-<details><summary>Click to view answer.</summary><p>
+To check your work.
+
+1.  Uncomment the `PURE FUNCTIONS` describe block in the `tests/WRITEME.test.js` file.
+2.  Run `yarn run test` to run the test suite.
+
+<details><summary>Or click to view answer.</summary><p>
 
 ```javascript
-function multiple(x, y) {
+function multiply(x, y) {
   return x * y;
 }
-console.log(add(3, 3)); // prints 9
+
+console.log(multiply(3, 3)); // prints 9
 ```
 
 </p></details>
@@ -34,9 +57,7 @@ console.log(add(3, 3)); // prints 9
 
 ### Convert `For` To `Map`
 
-Let's continue to keep it simple and build slowly! Let's take our `add` function and use it on a collection of numbers.
-
-What do you normally use to contain may elements in JavaScript? An array. Let's go ahead and use an array here.
+Let's continue to keep it simple and build slowly! Let's take our `add` function and use it on a collection of numbers. Maybe numbers contained in an array perhaps? Let's go ahead and use an array here.
 
 Here is our `for` loop that adds one to every value in our array.
 
@@ -49,7 +70,7 @@ function addOneToCollection(array) {
 console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 ```
 
-Now let's refactor and rewrite! Go ahead and turn the `addOneToCollection` `for` loop into a function that uses map.
+Now let's refactor! Go ahead and turn the `addOneToCollection` `for` loop into a function that uses map.
 
 ```javascript
 function addOneToCollection(array) {
@@ -60,15 +81,15 @@ function addOneToCollection(array) {
 console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 ```
 
-When given a value, the function will unwrap the values that are contained in the array into individual parts, feed those parts into the function that it was given and take the return value and rewrap them in a structured form.
+Congratulations!
 
 You just wrote a functor!
 
-Congratulations!
+When given a value, the function will unwrap the values that are contained in the array into individual parts, feed those parts into the function that it was given and take the return value and rewrap them in a structured form.
 
 ### Functors
 
-All a functor is, is an object that has a `.map` method... an array for instance.
+A functor is an object that has a `.map` method.
 
 Now it's your turn to write a functor! Rewrite the `multByTwo` function as a functor.
 
@@ -145,7 +166,7 @@ function countdown(num) {
 
 </p></details>
 
-Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment it's age. Below is one way you might set up the logic.
+Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment its age. Below is one way you might set up the logic.
 
 ```javascript
 class Tamagotchi {
@@ -228,96 +249,61 @@ growOlder = maxAge => {
 
 ### HIGHER ORDER FUNCTIONS
 
-Let's start off with a function. This function again is super simple! We are going to just add one to a value that we pass in.
+Let's start off with a function. This function again is super simple! We want to check if a value is greater than 10, if it is, we will return true.
 
 ```javascript
-function addOne(value) {
-  return value++;
+function greaterThan10(n) {
+  return m => m > 10;
 }
 
-console.log(addOne(2)); // 3
+console.log(greaterThan10(2)); // false
 ```
 
-But what if we pass in an array instead of a single value? To handle this our function has to expand.
+But what if we want to reuse this function later in our program, say to check if something is greater than 20?
+
+We could write this:
 
 ```javascript
-function addOne(value) {
-  if (typeof value === "number") {
-    return value++;
-  }
-  if (typeof value === "array") {
-    return value.map(number => {
-      return value++;
-    });
-  }
+function greaterThan20(n) {
+  return m => m > 20;
 }
 
-console.log(addOne(2)); // 3
-console.log(addOne([1, 2, 3])); // [2, 3, 4]
+console.log(greaterThan20(28)); // true
 ```
 
-This is fine, but what if I want to add another method. All of the sudden my function becomes bloated and unmanageable.
+But then we are unnecessarily duplicating code.
 
-So, let's refactor.
+So, let's refactor to make our method generic.
 
 ```javascript
-function addOne(value: number): number {
-  value++;
+function greaterThan(n) {
+  return m => m > n;
 }
 
-function addOneToArray(value: number[]): number[] {
-  return value.map(number => {
-    return addOne(value);
-  });
-}
+const greaterThan10 = greaterThan(10);
+const greaterThan20 = greaterThan(20);
 
-function higherOrderFn(value: A, fn: F[A]): A {
-  return fn(value);
-}
-
-console.log(higherOrderFn(2, addOneToValue)); // 3
-console.log(higherOrderFn([2, 3, 4], addOneToArray)); // [3, 4, 5]
+console.log(greaterThan10(2)); // false
+console.log(greaterThan20(28)); // true
 ```
 
-If you use Typescript this will look farmiliar to you, if not, types are displayed here to display the point that we can better reason about these small, composible functions.
+Now we wrote our method to be more generic and take another function as a parameter. This is called a higher order function.
 
-Your turn. Take a shot at refactoring this large bloated function into smaller, composible, and higher order functions.
+A higher order function takes one or more functions as arguments and returns a function as its result.
 
-```javascript
-function multByTwo(value) {
-  if (typeof value === "number") {
-    return value * 2;
-  }
-  if (typeof value === "array") {
-    return value.map(number => {
-      return value * 2;
-    });
-  }
-}
-
-console.log(multByTwo(2)); // 3
-console.log(multByTwo([1, 2, 3])); // [2, 3, 4]
-```
+Your turn. Take a shot at writing the higher order function `lessThan`. And then check your work by creating a `lessThan10` function and a `lessThan20` function.
 
 <details><summary>Click to view answer.</summary><p>
 
 ```javascript
-function multByTwo(value) {
-  value++;
+function lessThan(n) {
+  return m => m < n;
 }
 
-function multByTwoArray(value) {
-  return value.map(number => {
-    return addOne(value);
-  });
-}
-
-function higherOrderFn(value, fn) {
-  return fn(value);
-}
-
-console.log(higherOrderFn(2, multByTwo)); // 6
-console.log(higherOrderFn([2, 3, 4], multByTwoArray)); // [4, 6, 8]
+const lessThan10 = lessThan(10);
+const lessThan20 = lessThan(10);
 ```
 
 </p></details>
+
+Take a crack at thinking up your own examples! and play around with functors, recursion, and higher-order functions!
