@@ -166,6 +166,7 @@ function countdown(num) {
 
 </p></details>
 
+#### Tommy Tamagotchi
 Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment its age. Below is one way you might set up the logic.
 
 ```javascript
