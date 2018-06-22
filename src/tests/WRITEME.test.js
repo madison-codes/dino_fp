@@ -22,7 +22,7 @@ xdescribe('HIGHER ORDER FUNCTIONS', () => {
         expect(lessThan10(2)).toEqual(true);
     });
 
-    it('should return true if value is less than 20', () => {
+    it('should return false if value is greater than 20', () => {
         expect(lessThan20(50)).toEqual(false);
     });
 });
