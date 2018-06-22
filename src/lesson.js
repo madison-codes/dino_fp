@@ -18,9 +18,11 @@ function add(x, y) {
 // LOOPS //
 
 function addOneToCollection(array) {
+    const newArray = [];
     for (let i = 0; i < array.length; i++) {
-        return array[i] + 1;
+        newArray.push(array[i] + 1);
     }
+    return newArray;
 }
 
 function addOneToCollectionFP(array) {
@@ -32,9 +34,11 @@ function addOneToCollectionFP(array) {
 // FUNCTOR //
 
 function multByTwo(array) {
+    const newArray = [];
     for (let i = 0; i < array.length; i++) {
-        return array[i] * 2;
+        newArray.push(array[i] * 2);
     }
+    return newArray;
 }
 
 // RECURSION //

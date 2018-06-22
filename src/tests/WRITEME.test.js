@@ -17,7 +17,7 @@ xdescribe('RECURSION', () => {
     });
 });
 
-describe('HIGHER ORDER FUNCTIONS', () => {
+xdescribe('HIGHER ORDER FUNCTIONS', () => {
     it('should multiply every value within the array by two', () => {
         expect(lessThan10(2)).toEqual(true);
         expect(lessThan20(50)).toEqual(false);

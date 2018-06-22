@@ -1,5 +1,15 @@
 # Functional Programming in JavaScript
 
+---
+
+### Setup
+
+Install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) with the command `brew install yarn` if you don't already have it installed.
+
+Install dependencies with the command `yarn`.
+
+---
+
 We're going to start slow and simple, master building a pure function and then build up your knowledge from there.
 
 ## (SIMPLE) PURE FUNCTIONS
@@ -63,10 +73,13 @@ Here is our `for` loop that adds one to every value in our array.
 
 ```javascript
 function addOneToCollection(array) {
+  const newArray = [];
   for (let i = 0; i < array.length; i++) {
-    return array[i] + 1;
+    newArray.push(array[i] + 1);
   }
+  return newArray;
 }
+
 console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 ```
 
@@ -74,9 +87,9 @@ Now let's refactor! Go ahead and turn the `addOneToCollection` `for` loop into a
 
 ```javascript
 function addOneToCollection(array) {
-  return array.map((value) => {
-      return value + 1;
-  })
+  return array.map(value => {
+    return value + 1;
+  });
 }
 console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 ```
@@ -97,10 +110,13 @@ Remember all you have to do is convert the `for` loop to use `map`.
 
 ```javascript
 function multByTwo(array) {
-  for (i = 0; i < array.length; i++) {
-    return array[i] * 2;
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    newArray.push(array[i] * 2);
   }
+  return newArray;
 }
+
 console.log(multByTwo([1, 2, 3])); // prints [2, 4, 6]
 ```
 
@@ -167,6 +183,7 @@ function countdown(num) {
 </p></details>
 
 #### Tommy Tamagotchi
+
 Now, let's make things a bit more complicated. Say you're making a new Tamagotchi and need to increment its age. Below is one way you might set up the logic.
 
 ```javascript
