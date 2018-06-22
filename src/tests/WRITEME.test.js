@@ -6,7 +6,7 @@ xdescribe('PURE FUNCTIONS', () => {
 });
 
 xdescribe('FUNCTOR', () => {
-    it('should add one to every value in the collection', () => {
+    it('should multiply the number passed in by 2', () => {
         expect(multByTwo([1, 2, 3])).toEqual([2, 4, 6]);
     });
 });
@@ -18,8 +18,11 @@ xdescribe('RECURSION', () => {
 });
 
 xdescribe('HIGHER ORDER FUNCTIONS', () => {
-    it('should multiply every value within the array by two', () => {
+    it('should return true if value is less than 10', () => {
         expect(lessThan10(2)).toEqual(true);
+    });
+
+    it('should return true if value is less than 20', () => {
         expect(lessThan20(50)).toEqual(false);
     });
 });
