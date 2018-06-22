@@ -76,7 +76,7 @@ Now let's refactor! Go ahead and turn the `addOneToCollection` `for` loop into a
 function addOneToCollection(array) {
   return array.map((value) => {
       return value + 1;
-  }
+  })
 }
 console.log(addOneToCollection([1, 2, 3])); // prints [2, 3, 4]
 ```
@@ -97,7 +97,7 @@ Remember all you have to do is convert the `for` loop to use `map`.
 
 ```javascript
 function multByTwo(array) {
-  for (let i = 0; i < array.length; i++) {
+  for (i = 0; i < array.length; i++) {
     return array[i] * 2;
   }
 }
